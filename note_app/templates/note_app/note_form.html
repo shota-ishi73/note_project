@@ -1,0 +1,30 @@
+{% extends 'note_app/base.html' %}
+
+{% block content %}
+<form action='' method=POST>
+  <table class="table">
+    <tr>
+      <th>タイトル</th>
+      <td>{{form.title}}</td>
+    </tr>
+    <tr>
+      <th>本文</th>
+      <td>{{form.text}}</td>
+    </tr>
+    <tr>
+      <th>分類</th>
+      <td>{{form.category}}</td>
+    </tr>
+    <tr>
+      <th>作成日</th>
+      <td>{{form.create_at}}</td>
+    </tr>
+    <tr>
+      <th>更新日</th>
+      <td>{{form.update_at}}</td>
+    </tr>
+</table>
+<button type='submit' class="btn btn-primary">送信</button>
+{% csrf_token %}
+</form>
+{% endblock %}

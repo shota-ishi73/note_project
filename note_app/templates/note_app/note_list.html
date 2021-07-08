@@ -1,0 +1,27 @@
+{% extends 'note_app/base.html' %}
+
+{% block content %}
+<h1>ノート一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>分類</th>
+      <th>作成日</th>
+      <th>更新日</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for note in note_list %}
+    <tr>
+      <td><a href="{% url 'note_app:detail' note.pk %}">{{note.title}}</a></td>
+      <td>{{note.category}}</td>
+      <td>{{note.create_at}}</td>
+      <td>{{note.update_at}}</td>
+      <td><a href="{% url 'note_app:update' note.pk %}">編集</a></td>
+      <td><a href="{% url 'note_app:delete' note.pk %}">削除</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

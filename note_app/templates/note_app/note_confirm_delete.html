@@ -1,0 +1,23 @@
+{% extends 'note_app/base.html' %}
+
+{% block content %}
+<form action='' method=POST>
+  <table class="table">
+    <tr>
+      <th>タイトル</th>
+      <td>{{note.title}}</td>
+    </tr>
+    <tr>
+      <th>本文</th>
+      <td>{{note.text}}</td>
+    </tr>
+    <tr>
+      <th>分類</th>
+      <td>{{note.category}}</td>
+    </tr>
+</table>
+<p>こちらのデータを削除します。</p>
+<button type='submit' class="btn btn-primary">送信</button>
+{% csrf_token %}
+</form>
+{% endblock %}
