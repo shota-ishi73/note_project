@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,17 +8,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>NOTE</title>
+    <title>YOUR APP PLATFORM</title>
   </head>
+
   <body>
     <div class="container">
-    <nav class="nav">
-      <a class="nav-link" href="{% url 'user:index' %}">プラットフォームへ</a>
-      <a class="nav-link" href="{% url 'note_app:index' %}">一覧</a>
-      <a class="nav-link" href="{% url 'note_app:add' %}">追加</a>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a href="{% url 'user:index' %}">ホーム</a>
+      <a href="{% url 'admin:index' %}">管理画面</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:user_logout' %}">ログアウト</a>
+    {% else %}
+      <a href="{% url 'user:register' %}">登録画面</a>
+      <a href="{% url 'user:user_login' %}">ログイン</a>
+    {% endif %}
+      <a href="{% url 'user:info' %}">インフォメーション</a>
     </nav>
-    {% block content %}
-    {% endblock %}
+
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -28,3 +38,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+
+

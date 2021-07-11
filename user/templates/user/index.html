@@ -1,0 +1,21 @@
+{% extends "user/base.html" %}
+{% block content %}
+<h1>YOUR PLATFORM</h1>
+{% if user.is_authenticated %}
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">こんにちは、{{user.username}}!!</h4>
+    <p class="card-text">
+      これはノートアプリです。
+      勉強したことや気になることはここに残しましょう！
+    </p>
+    <a href="{% url 'note_app:index' %}" class="btn btn-primary">Go NOTE</a>
+  </div>
+</div>
+{% else %}
+<div class="alert alert-primary" role="alert">
+    <strong>ログインまたは新規登録してください</strong> 
+    <br>ログインまたは新規登録すれば各アプリケーションをご利用いただけます。</br>
+</div>
+{% endif %}
+{% endblock %}
