@@ -1,10 +1,14 @@
 {% extends "user/base.html" %}
 {% block content %}
-<h1>YOUR PLATFORM</h1>
+
+<nav class="navbar sticky-top" style="background-color: #e3f2fd;">
+  <h1>YOUR PLATFORM</h1>
+</nav>
 {% if user.is_authenticated %}
+<h2>こんにちは、{{user.username}}さん!!</h2>
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">こんにちは、{{user.username}}!!</h4>
+    <h4 class="card-title">NOTE</h4>
     <p class="card-text">
       これはノートアプリです。
       勉強したことや気になることはここに残しましょう！
