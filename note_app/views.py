@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .forms import NoteCreateForm
 from .models import Note
-
+from user.models import User
 
 def index(request):
   context={
@@ -10,13 +10,19 @@ def index(request):
   return render(request,'note_app/note_list.html',context)
 
 def add(request):
-  # 送信内容を基にフォームを作成し、POST出なければ空のフォーム
+  # 送信内容を基にフォームを作成し、POSTでなければ空のフォーム
   form = NoteCreateForm(request.POST or None)
 
   # method = POST、送信ボタン押下時、入力内容に問題なければ
-  if request.method == 'POST' and form.is_valid():
-    form.save()
-    return redirect('note_app:index')
+  if request.method == 'POST':
+    if form.is_valid():
+        print("検証に成功しました。データを保存します")
+        form.save()
+        return redirect('note_app:index')
+    else:
+        print("検証に失敗したので、データを保存しません。検証に失敗した理由を次に表示します。")
+        print(form.errors)
+
 
   # 通常時のページアクセスや、入力内容に誤りがあればまたページを表示 
   context = {
